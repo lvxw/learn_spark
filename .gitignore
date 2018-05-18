@@ -1,0 +1,13 @@
+.idea
+.settings
+.classpath
+target
+*.iml
+out
+.project
+.pydevproject
+.cache-main
+jar
+tmp
+result
+data
