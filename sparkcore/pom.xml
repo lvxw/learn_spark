@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sparksql</artifactId>
+    <artifactId>sparkcore</artifactId>
 
     <properties>
         <src.dir>src/main/scala</src.dir>
@@ -19,18 +19,10 @@
         <test.src.dir>src/test/java</test.src.dir>
         <test.res.dir>src/test/resources</test.res.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jarfile.name>SparkSql</jarfile.name>
+        <jarfile.name>SparkCore</jarfile.name>
         <jar.out.dir>jar</jar.out.dir>
         <maven.build.timestamp.format>yyyyMMdd-HHmmss</maven.build.timestamp.format>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.10</artifactId>
-            <version>${spark.version}</version>
-        </dependency>
-    </dependencies>
 
     <build>
         <sourceDirectory>${src.dir}</sourceDirectory>
