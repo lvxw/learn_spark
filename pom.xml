@@ -13,6 +13,7 @@
     <modules>
         <module>sparksql</module>
         <module>sparkcore</module>
+        <module>sparkstreaming</module>
     </modules>
 
     <developers>

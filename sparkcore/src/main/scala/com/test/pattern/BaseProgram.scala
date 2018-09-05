@@ -3,6 +3,7 @@ package com.test.pattern
 import org.apache.spark.SparkContext
 
 import scala.io.Source
+import scala.util.parsing.json.JSON
 
 /**
   * author:         吕学文<lvxw@fun.tv>
@@ -44,11 +45,11 @@ class BaseProgram{
 
   /**
     * 初始化参数inputDir，outputDir
-    * @param json
+    * @param args
     * @return
     */
-  def initParams(json:Option[Any]):Map[String,Any] = {
-    val paramsMap = matchJson(json)
+  def initParams(args:Array[String]):Map[String,Any] = {
+    val paramsMap = matchJson(JSON.parseFull(args.mkString("")))
     inputDir = paramsMap.get("input_dir").getOrElse().toString
     outputDir = paramsMap.get("output_dir").getOrElse().toString
     interimDir = paramsMap.get("interim_dir").getOrElse().toString

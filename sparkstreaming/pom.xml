@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>learn_spark</artifactId>
+        <groupId>com.test</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>sparkstreaming</artifactId>
+
+    <properties>
+        <src.dir>src/main/scala</src.dir>
+        <src.dir>src/main/java</src.dir>
+        <src.res.dir>src/main/resources</src.res.dir>
+        <test.src.dir>src/test/scala</test.src.dir>
+        <test.src.dir>src/test/java</test.src.dir>
+        <test.res.dir>src/test/resources</test.res.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jarfile.name>SparkStreaming</jarfile.name>
+        <jar.out.dir>jar</jar.out.dir>
+        <maven.build.timestamp.format>yyyyMMdd-HHmmss</maven.build.timestamp.format>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming_2.10</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming-kafka_2.10</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>${src.dir}</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>${src.dir}</directory>
+            </resource>
+            <resource>
+                <directory>${src.res.dir}</directory>
+                <includes>
+                    <include>**/*</include>
+                    <include>*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testSourceDirectory>${test.src.dir}</testSourceDirectory>
+        <testResources>
+            <testResource>
+                <directory>${test.src.dir}</directory>
+            </testResource>
+        </testResources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <finalName>${jarfile.name}</finalName>
+                    <outputDirectory>${jar.out.dir}</outputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
