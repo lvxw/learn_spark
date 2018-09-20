@@ -3,8 +3,11 @@ import org.apache.spark.streaming.kafka.KafkaUtils
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 /**
-  * nc -lk 888
-  * 使用该命令发送数据
+  * 建立topic:
+  *   /home/hadoop/soft/kafka/bin/kafka-topics.sh --zookeeper artemis-02:2181/microlens/artemis/kafka --create --topic wordCount --partitions 3  --replication-factor 3
+  * 向kafka 中输入数据：
+  *   /home/hadoop/soft/kafka/bin/kafka-console-producer.sh --broker-list artemis-02:9092 --topic wordCount
+  *
   */
 object WordCountByKafka {
 

@@ -2,7 +2,7 @@ import org.apache.spark.SparkConf
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 /**
-  * nc -lk 888
+  * nc -lk 8888
   * 使用该命令发送数据
   */
 object WordCountByTcp {
