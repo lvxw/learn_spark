@@ -31,22 +31,48 @@ import org.apache.spark.streaming.kafka.HasOffsetRanges
           \"run_pattern\":\"TestStrategy\"
         }
   */
-object WordCountByDirectKafka3 extends BaseProgram{
+object OffsetDirectKafkaTemplate extends BaseProgram{
   initParams(args)
   getStreamingContext()
 
-  getKafkaStream()
+  def test1(): Unit ={
+    getKafkaStream()
+      .transform{ rdd =>
+        offsetRanges = rdd.asInstanceOf[HasOffsetRanges].offsetRanges
+        rdd
+      }
+      .map(msg => msg._2)
+      .foreachRDD{rdd =>
+        rdd
+          .flatMap(x => x.split(" "))
+          .map((_,1))
+          .reduceByKey(_+_)
+          .foreachPartition(partition =>
+            // 此处可以是外部数据库链接，一个分区使用一个链接
+            partition.foreach(println(_))
+          )
+        updateTopicsOffset()
+      }
+  }
+
+  def test2(): Unit ={
+    getKafkaStream()
     .transform{ rdd =>
       offsetRanges = rdd.asInstanceOf[HasOffsetRanges].offsetRanges
       rdd
     }
     .map(msg => msg._2)
     .foreachRDD{rdd =>
-      rdd.foreachPartition { partition =>
-        partition.foreach(println)
-      }
+      val re = rdd
+        .flatMap(x => x.split(" "))
+        .map((_,1))
+        .reduceByKey(_+_)
+
+      re.foreach(println(_))
       updateTopicsOffset()
     }
+  }
 
+  test1()
   startStreamingContext()
 }

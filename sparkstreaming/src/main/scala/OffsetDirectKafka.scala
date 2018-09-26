@@ -17,17 +17,17 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
   *   /home/hadoop/soft/kafka/bin/kafka-console-producer.sh --broker-list artemis-02:9092 --topic wordCount
   *
   */
-object WordCountByDirectKafka2{
+object OffsetDirectKafka{
 
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf()
-      .setAppName("WordCountByDirectKafka2")
+      .setAppName("OffsetDirectKafka")
       .setMaster("local[*]")
 //      .set("spark.streaming.kafka.maxRatePartition","10000")
 
     val ssc = new StreamingContext(conf,Seconds(5))
 
-    val group = "WordCountByDirectKafka3"
+    val group = "OffsetDirectKafka"
     val topic = "wordCount"
     val brokerList = "artemis-02:9092,artemis-03:9092,artemis-04:9092"
     val zkQuorum = "artemis-02:2181,artemis-03:2181,artemis-03:2181"

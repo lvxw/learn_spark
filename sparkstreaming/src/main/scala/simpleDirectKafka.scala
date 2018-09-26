@@ -13,10 +13,10 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
   *   /home/hadoop/soft/kafka/bin/kafka-console-producer.sh --broker-list artemis-02:9092 --topic wordCount
   *
   */
-object WordCountByDirectKafka {
+object simpleDirectKafka {
 
   def main(args: Array[String]): Unit = {
-    val conf = new SparkConf().setAppName("WordCountByDirectKafka").setMaster("local[*]")
+    val conf = new SparkConf().setAppName("simpleDirectKafka").setMaster("local[*]")
     val ssc = new StreamingContext(conf,Seconds(5))
 
 
