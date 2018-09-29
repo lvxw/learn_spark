@@ -1,6 +1,7 @@
 package com.test.pattern
 
 import org.apache.spark.SparkContext
+import util.Properties
 
 import scala.io.Source
 import scala.util.parsing.json.JSON
@@ -11,7 +12,8 @@ import scala.util.parsing.json.JSON
   * Description:    spark程序的父类
   * jira:
   */
-class BaseProgram{
+class BaseProgram extends App {
+  Properties.setProp("scala.time","")
   var inputDir:String = _
   var outputDir:String = _
   var interimDir:String = _
