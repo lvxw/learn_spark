@@ -17,10 +17,14 @@ object WordCount extends BaseProgram {
   initParams(args)
   initSparkContext()
 
-  context
+  val re = context
     .executeGetInitRDD(sc, inputDir)
     .flatMap(_.split(","))
     .map((_, 1))
-    .reduceByKey(_ + _)
-    .saveAsTextFile(outputDir)
+//    .saveAsTextFile(outputDir)
+
+
+  re.aggregateByKey()
+  re.foreach(println(_))
+
 }
